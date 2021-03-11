@@ -1,0 +1,42 @@
+#Guide for setting up the MillionSongSubset database
+
+##Dependencies
+
+###Install Python2.7
+   sudo add-apt-repository universe
+   sudo apt-get update
+   sudo apt-get install python2.7
+
+###Install pip for Python 2.7
+   curl https://bootstrap.pypa.io/pip/2.7/get-pip.py --output get-pip.py
+   sudo python2 get-pip.py
+
+###Install numpy and tables
+   python2.7 -m pip install numpy
+   python2.7 -m pip install tables
+
+##Get the dataset
+
+###Download the subset dataset
+Download the subset at http://millionsongdataset.com/sites/default/files/millionsongsubset.tar.gz
+
+Extract the subset dataset. Rename the folders
+   MillionSongSubset/A to MillionSongSubset/data
+   MillionSongSubset/B to MillionSongSubset/AdditionalFiles
+
+###Clone the MSongsDB repository
+   git clone https://github.com/tbertinmahieux/MSongsDB.git
+
+###Fix a bug
+Change line 39 of the MSongsDB/PythonSrc/hdf5_getters.py from
+    return tables.openFile(h5filename, mode='r')
+to
+    return tables.open_file(h5filename, mode='r')
+
+##A simple example
+Download http://millionsongdataset.com/sites/default/files/tutorial1.py.txt, save it as tutorial1.py
+
+Change lines 39 and 45 to be the correct locations for your system.
+
+Now, you should be able to run the example:
+   python2.7 tutorial1.py
