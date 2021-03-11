@@ -84,13 +84,11 @@ and stop it using
 Install Hadoop on each machine, by following the above instructions.
 
 ### Setup passphraseless ssh
-Create a new key. Where X is a number that we haven't used yet. Node 1 in our cluster would use "vm1", node 2 would use "vm2", and so on.
-	ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa_vmX
 
 Transfer the public key you created earlier to the other machines using scp. Place the .pub in ~/.ssh/
 	scp -i DE1-Team1.pem .ssh/id_rsa.pub ubuntu@XXX.XXX.X.XX:~/.ssh/t.pub
 Add the key to ~/.ssh/authorized_keys on the other machines:
 	cat ~/.ssh/t.pub >> ~/.ssh/authorized_keys
 	chmod 0600 ~/.ssh/authorized_keys
-	rm t.pub
-Test that this works by using ssh to enter the machine (without providing DE1-Team1.pem).
+	rm .ssh/t.pub
+Test that this works by using ssh to enter the machine (without providing the DE1-Team1.pem).
