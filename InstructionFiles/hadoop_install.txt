@@ -1,0 +1,96 @@
+Installation intructions for Hadoop, on Ubuntu 20 LTS.
+
+Based (mostly) on:
+	https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/SingleCluster.html
+	https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/ClusterSetup.html
+
+# Prerequisites
+
+### Update Apt
+	sudo apt-get update
+
+### Install java 8
+The java version was decided by looking at https://cwiki.apache.org/confluence/display/HADOOP/Hadoop+Java+Versions
+	sudo apt-get install openjdk-8-jdk
+
+### SSH
+Install the following:
+	sudo apt-get install ssh
+	sudo apt-get install pdsh
+
+### Download Hadoop
+
+If we already have the .tar.gz archive containing Hadoop on one of the VMs, you can use scp to move the .tar.gz to the new machine, and unzip it with
+	tar -xvzf hadoop-3.2.2.tar.gz
+
+Hadoop can be downloaded from https://hadoop.apache.org/releases.html. Choose the 3.2.2 version. Once downloaded, verify the file using the instructions at the site. Transfer the verified .tar.gz archive to the VM, and unzip.
+
+
+### Modify env variables
+Navigate to the unzipped folder hadoop-3.2.2/
+	cd hadoop-3.2.2
+Use vim to modify etc/hadoop/hadoop-env.sh. Change line 54 to
+	export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/jre
+Test this by running
+	bin/hadoop
+If it works, you should see usage documentation for the hadoop script.
+If you get an output saying that "ERROR: JAVA_HOME ... does not exist.", try "readlink -f $(which java)" to find the java location on your system and substitute the output. Hadoop requires that "JAVA_HOME/bin/java" exists.
+
+# Local (Standalone) Mode
+The system is now configured to run in a non-distributed mode.
+
+# Setup pseudo-distributed operation
+You need to do this before setting up fully distributed mode.
+
+### Change Hadoop configs
+Change the contents of etc/hadoop/core-site.xml to
+	<configuration>
+	    <property>
+		<name>fs.defaultFS</name>
+		<value>hdfs://localhost:9000</value>
+	    </property>
+	</configuration>
+and the contents of etc/hadoop/hdfs-site.xml to
+	<configuration>
+	    <property>
+		<name>dfs.replication</name>
+		<value>1</value>
+	    </property>
+	</configuration>
+
+### Setup passphraseless ssh
+Try
+	ssh localhost
+If you cannot connect, run the following commands:
+	ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa
+	cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+	chmod 0600 ~/.ssh/authorized_keys
+You should now be able to connect to localhost with "ssh localhost"
+
+Check the pdsh default rcmd:
+	pdsh -q -w localhost | grep "Rcmd type"
+If it is anything other than "ssh", append the following line to "~/.bashrc", using e.g. vim:
+	export PDSH_RCMD_TYPE=ssh
+And run the following:
+	source ~/.bashrc
+
+You should now be able to start the hdfs in local (standalone) mode using
+	sbin/start-dfs.sh
+and stop it using
+	sbin/stop-dfs.sh
+
+# Fully-Distributed Mode
+
+Install Hadoop on each machine, by following the above instructions.
+
+### Setup passphraseless ssh
+Create a new key. Where X is a number that we haven't used yet. Node 1 in our cluster would use "vm1", node 2 would use "vm2", and so on.
+	ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa_vmX
+
+Transfer the public key you created earlier to the other machines using scp. Place the .pub in ~/.ssh/
+	scp -i DE1-Team1.pem .ssh/id_rsa.pub ubuntu@XXX.XXX.X.XX:~/.ssh/t.pub
+Add the key to ~/.ssh/authorized_keys on the other machines:
+	cat ~/.ssh/t.pub >> ~/.ssh/authorized_keys
+	chmod 0600 ~/.ssh/authorized_keys
+	rm t.pub
+Test that this works by using ssh to enter the machine (without providing DE1-Team1.pem).
