@@ -34,6 +34,7 @@ Navigate to the unzipped folder hadoop-3.2.2/
 	cd hadoop-3.2.2
 Use vim to modify etc/hadoop/hadoop-env.sh. Change line 54 to
 	export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/jre
+Remember to clean up the # sign
 Test this by running
 	bin/hadoop
 If it works, you should see usage documentation for the hadoop script.
