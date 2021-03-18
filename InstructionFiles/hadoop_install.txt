@@ -24,7 +24,9 @@ Install the following:
 If we already have the .tar.gz archive containing Hadoop on one of the VMs, you can use scp to move the .tar.gz to the new machine, and unzip it with
 	tar -xvzf hadoop-3.2.2.tar.gz
 
-Hadoop can be downloaded from https://hadoop.apache.org/releases.html. Choose the 3.2.2 version. Once downloaded, verify the file using the instructions at the site. Transfer the verified .tar.gz archive to the VM, and unzip.
+Hadoop can be downloaded from https://hadoop.apache.org/releases.html. Choose the 3.2.2 version. Once downloaded, verify the file using the instructions at the site. 
+Or directly download by mirror from https://mirror.jframeworks.com/apache/hadoop/common/hadoop-3.2.2/ .
+Transfer the verified .tar.gz archive to the VM, and unzip.
 
 
 ### Modify env variables
