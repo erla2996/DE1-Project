@@ -180,7 +180,7 @@ Edit etc/hadoop/yarn-site.xml:
 	    </property>
 	    <property>
 	            <name>yarn.resourcemanager.hostname</name>
-	            <value>192.168.2.98</value>
+	            <value>node-master</value>
 	    </property>
 	    <property>
 	            <name>yarn.nodemanager.aux-services</name>
@@ -224,3 +224,5 @@ You can now start the HDFS by running
 	start-dfs.sh
 and stop it by running
 	stop-dfs.sh
+
+IMPORTANT: When/if we format the nameNode, delete the ~/data/ folder of all worker nodes
