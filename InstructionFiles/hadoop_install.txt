@@ -24,7 +24,7 @@ Install the following:
 If we already have the .tar.gz archive containing Hadoop on one of the VMs, you can use scp to move the .tar.gz to the new machine, and unzip it with
 	tar -xvzf hadoop-3.2.2.tar.gz
 
-Hadoop can be downloaded from https://hadoop.apache.org/releases.html. Choose the 3.2.2 version. Once downloaded, verify the file using the instructions at the site. 
+Hadoop can be downloaded from https://hadoop.apache.org/releases.html. Choose the 3.2.2 version. Once downloaded, verify the file using the instructions at the site.
 Or directly download by mirror from https://mirror.jframeworks.com/apache/hadoop/common/hadoop-3.2.2/ .
 Transfer the verified .tar.gz archive to the VM, and unzip.
 
@@ -93,7 +93,7 @@ Transfer the public key you created earlier to the other machines using scp. Pla
 Add the key to ~/.ssh/authorized_keys on the other machines:
 	cat ~/.ssh/t.pub >> ~/.ssh/authorized_keys
 	chmod 0600 ~/.ssh/authorized_keys
-	rm t.pub
+	rm ~/.ssh/t.pub
 Test that this works by using ssh to enter the machine (without providing DE1-Team1.pem).
 
 
