@@ -3,29 +3,29 @@
 # Assuming that the HDFS has been deployed to master node and each data node. 
 
 # Go to master node by: 
-  ssh node-master
+    ssh node-master
 
 # Download the MillionSongSubset.tar.gz from http://millionsongdataset.com/pages/getting-dataset/#subset to a local repository. 
 # Make a directory in VM. 
-  mkdir input
+    mkdir input
   
 # Copy the subset to directory input. 
-  cp /your local path to subset/MillionSongSubset.tar.gz /home/ubuntu/input
+    cp /your local path to subset/MillionSongSubset.tar.gz /home/ubuntu/input
 # Unzip the tar.gz file. 
-  tar -xvzf MillionSongSubset.tar.gz
+    tar -xvzf MillionSongSubset.tar.gz
 # Go to directory input, and check if the MillionSongSubset exists. 
-  cd input
-  ls
+    cd input
+    ls
 # if it exists, delete the tar.gz file. 
-  rm MillionSongSubset.tar.gz
+    rm MillionSongSubset.tar.gz
 
 # Make a virtual directory in HDFS. 
-  cd hadoop-3.2.2/bin
-  hdfs dfs -mkdir /input
+    cd hadoop-3.2.2/bin
+    hdfs dfs -mkdir /input
 # Check if the direcoty exist. 
-  hdfs dfs -ls
+   hdfs dfs -ls
 
 # Upload the subset to /input. 
-  hdfs dfs -put /home/ubuntu/input/MillionSongSubset /input
+    hdfs dfs -put /home/ubuntu/input/MillionSongSubset /input
 # Check if the subset exists. 
-  hdfs dfs -ls /input
+    hdfs dfs -ls /input
