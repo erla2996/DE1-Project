@@ -1,0 +1,8 @@
+# Upload the MillionSongSubset to HDFS. 
+
+# Assuming that the HDFS has been deployed to master node and each data node. 
+
+# Go to master node by: 
+  ssh node-master
+
+# Download the MillionSongSubset.
