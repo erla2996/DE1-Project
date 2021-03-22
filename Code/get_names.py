@@ -17,7 +17,7 @@ def input_names(dir):
                     if os.path.exists(path):
                         datanames = os.listdir(path)
                         for i in datanames:
-                           ipt.write(''.join('/input/' + i + '\n'))
+                           ipt.write(''.join('/input/MillionSongSubset/' + chr(j) + '/' + chr(k) + '/' + chr(l) + '/' + i + '\n'))
 
 # make a new directory
 def mkdir(path):
