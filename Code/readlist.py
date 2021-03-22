@@ -4,7 +4,6 @@
 import os
 import math
 
-
 def input_names(dir):
     # search from directories
     for j in range(ord('A'), ord('Z')+1):
@@ -18,7 +17,7 @@ def input_names(dir):
                     if os.path.exists(path):
                         datanames = os.listdir(path)
                         for i in datanames:
-                            ipt.write(''.join('/input/' + i + '\n'))
+                           ipt.write(''.join('/input/' + i + '\n'))
 
 # make a new directory
 def mkdir(path):
@@ -44,8 +43,8 @@ def split_t(n, path):
             tdata.append(d)
             d = ori.readline()
 
-
-origin_dir = 'D:/Tang/PycharmProjects/PycharmProjects/pythonProject/dei/' + 'millionsongsubset/'
+# input your path to millionsongsubset on PC or VM
+origin_dir = your path to millionsongsubset + 'millionsongsubset/'
 new_dir = origin_dir + 'input/'
 input_names(origin_dir)
 mkdir(new_dir)
