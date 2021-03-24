@@ -50,20 +50,8 @@ import math
 def read_input(file):
     i=0 #Counts the number of rows in the file
 
-    #Variables for calculating the mean of a feature:
-    j=0
-    feature=0
-    mean_of_feature=0
-
-    #Variables for calculating conditional probabilities for a given feature:
-    k=0  #Count low hotness
-    kk=0 #Count high hotness
-    low_feat_low_hot = 0  #Initialize counts as zero
-    high_feat_low_hot = 0  #Initialize counts as zero
-    low_feat_high_hot = 0  #Initialize counts as zero
-    high_feat_high_hot = 0  #Initialize counts as zero
     for line in file:
-        line = str(line.strip("\n"))    #line.strip()
+        line = str(line.strip("\n"))
         line = line[1:]
         line = "/home/ubuntu/" + line
         if line != '\n' and line != '':
@@ -128,7 +116,7 @@ def read_input(file):
                 Duration = 0 #Assign zero if Null
             # Return the gotten attributes
             if (song_hotttnesss != None and not (math.isnan(song_hotttnesss))):   #Uncomment if you only want the values where song_hotttnesss is defined
-                yield (hot_song, Tempo, Year, Duration)  #, danceability)  # mean_of_feature) #, duration, time_signature, end_of_fade_in)
+                yield (hot_song, Tempo, Year, Duration)
 
 def main(separator='\t'):
     # Read attributes from STDIN
