@@ -115,7 +115,7 @@ def read_input(file):
                 duration = None
                 Duration = 0 #Assign zero if Null
             # Return the gotten attributes
-            if (song_hotttnesss != None and not (math.isnan(song_hotttnesss))):   #Uncomment if you only want the values where song_hotttnesss is defined
+            if (song_hotttnesss != None and not (math.isnan(song_hotttnesss))):   #For getting only the values where song_hotttnesss is defined
                 yield (hot_song, Tempo, Year, Duration)
 
 def main(separator='\t'):
